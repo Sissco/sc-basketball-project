@@ -1,0 +1,16 @@
+Add a "new game" button DONE & FUNCTIONAL
+
+Highlight the leader
+
+addmore counters (eg. period, fouls, timer)
+
+change the design - DONE
+
+color palette
+red - #BE123C
+lightred - #FB7185
+lightyellow - FCD34D
+verylightyellow - FDE68A
+dark blue - #0C4A6E
+blue - #075985
+whitegray - #F3F4F6

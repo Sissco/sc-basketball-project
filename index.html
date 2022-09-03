@@ -1,0 +1,57 @@
+<html>
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+
+         <div class="timer">
+             <span id="timeMinutes">05:</span>
+             <span id="timeSeconds">00</span>
+        </div>
+           <h5 id="leading-team">Good Luck!</h5>
+        <div class="game-control">
+         
+            <div class="container">
+                <!-- HOME -->
+                <div class="state home">
+                    <h3>HOME</h3>
+                    <div class="scoreboard home-score">
+                        <span id="homeScore">0</span>
+                    </div>
+                    <div class="counter-control">
+                        <button id="homeIncOne" class="disabled" onclick="scoreCount(homeIncOne)" disabled >+1</button>
+                        <button id="homeIncTwo" class="disabled" onclick="scoreCount(homeIncTwo)" disabled>+2</button>
+                        <button id="homeIncThree" class="disabled" onclick="scoreCount(homeIncThree)" disabled>+3</button>
+                    </div>
+                </div>
+                <!-- GUEST -->
+                <div class="state guest">
+                    <h3>GUEST</h3>
+                    <div class="scoreboard guest-score">
+                        <span id="guestScore">0</span>
+                    </div>
+                    <div class="counter-control">
+                        <button id="incOne" class="disabled" onclick="scoreCount(incOne)" disabled>+1</button>
+                        <button id="incTwo" class="disabled" onclick="scoreCount(incTwo)" disabled>+2</button>
+                        <button id="incThree" class="disabled" onclick="scoreCount(incThree)" disabled>+3</button>
+                    </div>
+                </div>
+            </div>
+          <div class="button-control">
+            <button id="newgame-btn" onclick="newGame()">New Game</button>
+            <button id="reset-btn" onclick="resetGame()">Reset</button>
+            <button id="endgame-btn" onclick="endGame()">End</button>
+          </div>
+        </div>
+        
+        <div class="winnerbox" id="winner-cont">
+            <div class="close-btn" onclick="closeWinnerDIsplay()">
+                <div class="cross cross-x"></div>
+                <div class="cross cross-y"></div>
+            </div>
+            <h5 id="winner-text">Home Team</h5>
+            <h3>Won!</h3>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
