@@ -17,7 +17,7 @@
     let text = document.getElementsByTagName('h3')[2]
 
       // INITIALIZE COUNTDOWN
-let timerId 
+let timerId
 
 // Score count
 function scoreCount(id) {
@@ -27,7 +27,7 @@ function scoreCount(id) {
     } else if ( id === homeIncTwo ) {
         homeScore += 2
     } else if ( id === homeIncThree ) {
-        homeScore += 3  
+        homeScore += 3
     } else if ( id === incOne ) {
         guestScore += 1
     } else if ( id === incTwo ) {
@@ -35,22 +35,25 @@ function scoreCount(id) {
     } else if ( id === incThree ) {
         guestScore += 3
     }
-    
-    homeScore >= 100  ? homeScore = 0 : "" 
-    guestScore >= 100  ? guestScore = 0 : "" 
+
+    homeScore >= 100  ?  endGame()  : ""
+    guestScore >= 100  ?  endGame()  : ""
     homeDisplay.textContent = homeScore
     guestDisplay.textContent = guestScore
-    
+
      if (homeScore > guestScore) {
          homeScoreSide.setAttribute('id', 'active')
          guestScoreSide.removeAttribute('id', 'active')
          leadingTeam.textContent = "Home Team winning!"
          leadingTeam.style.color = "#075985"
-     } else {
+     } else if (homeScore < guestScore) {
          guestScoreSide.setAttribute('id', 'active')
          homeScoreSide.removeAttribute('id', 'active')
          leadingTeam.textContent = "Guest Team winning!"
          leadingTeam.style.color = "#FDE68A"
+     } else {
+         leadingTeam.textContent = "Teams tie"
+         leadingTeam.style.color = "#BE123C"
      }
 }
 
@@ -106,7 +109,7 @@ function removeClass() {
     incThree.classList.remove("disabled")
 }
 
-function addClass() { 
+function addClass() {
     homeIncOne.classList.add("disabled")
     homeIncOne.classList.add("disabled")
     homeIncTwo.classList.add("disabled")
@@ -122,6 +125,8 @@ function resetGame() {
     clearInterval(timerId)
     mins = 5
     secs = 1
+    leadingTeam.textContent = "Game has been reset. Good luck!"
+    leadingTeam.style.color = "#BE123C"
     timerId = setInterval(timerCountdown, 1000)
     timerCountdown()
 }
@@ -131,28 +136,30 @@ function endGame() {
     winningTeam()
     resetGame()
     disableButton()
-    mins = 5 
+    mins = 5
     secs = 1
+    leadingTeam.textContent = "Good luck!"
+    leadingTeam.style.color = "#BE123C"
     clearInterval(timerId)
     resetBtn.style.display = "none"
     endGameBtn.style.display = "none"
     newGameBtn.style.display = "block"
-    
+
     resetScore()
 
 }
 
-// Timer 
+// Timer
 function timerCountdown() {
     secs --
     let decZero = "0" + secs
     timeSeconds.textContent = secs
     timeMinutes.textContent = "0" + mins + ":"
-   
+
     if(secs < 10) {
         timeSeconds.textContent = decZero
     }
-    
+
     if (secs < 0) {
         mins --
         secs = 60
@@ -160,7 +167,7 @@ function timerCountdown() {
         timeMinutes.textContent = "0" + mins + ":"
         timeSeconds.textContent = secs
    }
-   
+
     if (mins === 0 && secs === 0) {
        clearInterval(timerId)
        resetBtn.style.display = "none"
@@ -170,29 +177,30 @@ function timerCountdown() {
 
 // display winning team
 function winningTeam() {
-        
 
-    console.log(text)
     winnerContainer.style.display = "block"
+    newGameBtn.disabled = true
+   // endGameBtn.disabled = true
     if (homeScore > guestScore) {
          winner.textContent = "Home team"
-         winnerContainer.style.backgroundColor = "#0C4A6E" 
-         
-     } else if (homeScore === 0 && guestScore === 0) {
+         text.textContent = "Won!"
+         winnerContainer.style.backgroundColor = "#0C4A6E"
 
-         text.textContent = "tie"
+     } else if (homeScore === 0 && guestScore === 0 || homeScore === guestScore) {
        winner.textContent = "Both teams"
-       winnerContainer.style.backgroundColor = "#BE123C"  
-           
+       text.textContent = "tie"
+       winnerContainer.style.backgroundColor = "#BE123C"
      }
      else {
          winner.textContent = "Guest team"
+         text.textContent = "Won!"
          winnerContainer.style.backgroundColor = "#FCD34D"
-     } 
+     }
 
 }
 
 // close winner display tab
 function closeWinnerDIsplay() {
     winnerContainer.style.display = "none"
+    newGameBtn.disabled = false
 }
